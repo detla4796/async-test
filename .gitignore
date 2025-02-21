@@ -1,0 +1,87 @@
+# Ignore build and object files
+build/
+out/
+dist/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+
+# Ignore user-specific settings files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore IDE/editor files and folders
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore Visual Studio files
+ipch/
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.log
+*.tlog
+*.VC.db
+*.VC.opendb
+
+# Ignore Xcode files
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xcworkspace
+*.xcuserstate
+
+# Ignore CMake files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Ignore package manager files
+# Conan
+conan.lock
+conanbuildinfo.*
+conaninfo.txt
+
+# vcpkg
+vcpkg_installed/
+
+# Ignore backup and temporary files
+*.bak
+*.tmp
+
+# Ignore logs and output files
+*.log
+*.nupkg
+*.pdb
+
+# Ignore environment configuration files
+.env
+.env.local
+
+# Ignore system-specific files
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
