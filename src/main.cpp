@@ -18,58 +18,45 @@ void gen_vector(int sz, function<void(vector<int>)>callback)
     callback(vec);
 }
 
-void summa(const vector<int>& vec, function<void(int)>callback)
+void proc_vector(const vector<int>& vec, function<void(vector<int>)> callback)
 {
-    int sm = 0;
-    for (auto i : vec)
+    vector<int> proc(vec.size());
+    for (size_t i = 0; i < vec.size(); i++)
     {
-        sm += i;
+        proc[i] = vec[i] * 2;
     }
-    callback(sm);
-}
-
-void proizved(const vector<int>& vec, function<void(int)>callback)
-{
-    int sm = 0;
-    for (auto i : vec)
-    {
-        sm *= i;
-    }
-    callback(sm);
+    callback(proc);
 }
 
 int main()
 {
     auto task = async(launch::async, [](function<void(vector<int>)>callback) 
     {
-        gen_vector(100, callback);
+        gen_vector(10, callback);
     },
     [](vector<int> vec)
     {
-        for (int sn : vec)
+        cout << "First mass: " << endl;
+        for (int num : vec)
         {
-            cout << sn << endl;
+            cout << num << " ";
         }
-        auto sum = async(launch::async, [vec](function<void(int)>callback)
+        cout << endl;
+
+        auto proc_task = async(launch::async, [vec](function<void(vector<int>)>callback)
         {
-            summa(vec, callback);
+            proc_vector(vec, callback);
         },
-        [] (int sum)
+        [](vector<int> proc)
         {
-            cout << endl << "Summa: ";
-            cout << sum;
+            cout << "Changed mass: " << endl;
+            for (int num : proc)
+            {
+                cout << num << " ";
+            }
+            cout << endl;
         });
-        auto przv = async(launch::async, [vec](function<void(int)>callback)
-        {
-            proizved(vec, callback);
-        },
-        [] (int proiz)
-        {
-            cout << endl << "Proizvedenie: ";
-            cout << proiz;
-        });
-        sum.wait();
-        przv.wait(); 
+        proc_task.wait();
     });
     task.wait();
 }
